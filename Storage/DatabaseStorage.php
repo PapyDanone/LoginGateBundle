@@ -3,7 +3,7 @@
 namespace Anyx\LoginGateBundle\Storage;
 
 use Anyx\LoginGateBundle\Exception\BruteForceAttemptException;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
@@ -33,11 +33,11 @@ class DatabaseStorage implements StorageInterface
     }
 
     /**
-     * @param \Doctrine\Common\Persistence\ObjectManager $objectManager
+     * @param \Doctrine\ORM\EntityManagerInterface $objectManager
      * @param string $entityClass
      * @param integer $watchPeriod
      */
-    public function __construct(ObjectManager $objectManager, $entityClass, $watchPeriod)
+    public function __construct(EntityManagerInterface $objectManager, $entityClass, $watchPeriod)
     {
         $this->objectManager = $objectManager;
         $this->modelClassName = $entityClass;
